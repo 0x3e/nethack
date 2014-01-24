@@ -2,9 +2,9 @@
 
 er=''
 #yacc
-command -v yacc >/dev/null 2>&1 || {er="yacc not installed\n"}
-#flex
-command -v flex >/dev/null 2>&1 || {er=$er"flex not installed\n"}
+command -v yacc >/dev/null 2>&1 || er="yacc not installed\n"
+#lex
+command -v lex >/dev/null 2>&1 || er=$er"lex not installed\n"
 ncurses_count=$(ldconfig -p 2> /dev/null |grep ncurses|wc -l)
 
 if [ "$ncurses_count" == "0" ]
@@ -16,7 +16,6 @@ then
   echo -e "$er"
   exit 1
 fi
-exit
 
 if [ ! -d src ]
 then
