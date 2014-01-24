@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#http://nethack.sourceforge.net/docs/nh343/README.linux.txt
 er=''
 #yacc
 command -v yacc >/dev/null 2>&1 || er="yacc not installed\n"
