@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #http://nethack.sourceforge.net/docs/nh343/README.linux.txt
+set -e
 er=''
 #yacc
 command -v yacc >/dev/null 2>&1 || er="yacc not installed\n"
@@ -17,12 +18,12 @@ then
   exit 1
 fi
 
-if [ ! -d src ]
+if [ ! -d nethacks ]
 then
-  mkdir src
+  mkdir nethacks
 fi
 
-cd src
+cd nethacks
 
 if [ ! -f sortloot-343.diff ]
 then
@@ -41,7 +42,10 @@ then
   wget "http://aarnet.dl.sourceforge.net/project/nethack/nethack/3.4.3/nethack-343-src.tgz"
 fi
 
-echo "21479c95990eefe7650df582426457f9  nethack-343-src.tgz" > md5.txt 
+echo "445b3ebcfeadb75c8ccab17dfcfda5b8  nh343-menucolor.diff
+d527e20189b0dfcd6ed7b4749687f6fd  sortloot-343.diff
+b11eeacbf6e58496563723dcf1047ac1  nh343-statuscolors.patch
+21479c95990eefe7650df582426457f9  nethack-343-src.tgz" > md5.txt 
 
 md5sum --check md5.txt || exit 4
 
@@ -65,4 +69,11 @@ popd
 sed -i -e's@/\* #define LINUX \*/@#define LINUX@' include/unixconf.h
 sed -i -e's/WINTTYLIB = -ltermlib/WINTTYLIB = -lncurses/' src/Makefile
 
-make all
+if [ "$1" == "make" ]
+then
+  make all
+fi
+if [ "$1" == "install" ]
+then
+  make all && sudo make install
+fi
