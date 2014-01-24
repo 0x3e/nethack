@@ -41,10 +41,9 @@ then
   wget "http://aarnet.dl.sourceforge.net/project/nethack/nethack/3.4.3/nethack-343-src.tgz"
 fi
 
-if [ ! -f md5.txt ]
-then
-  echo "21479c95990eefe7650df582426457f9 nethack-343-src.tgz" > md5.txt 
-fi
+echo "21479c95990eefe7650df582426457f9 nethack-343-src.tgz" > md5.txt 
+
+md5sum --check md5.txt || exit 4
 
 if [ -d nethack-3.4.3 ]
 then
@@ -65,4 +64,5 @@ sh setup.sh
 popd
 sed -i -e's@/\* #define LINUX \*/@#define LINUX@' include/unixconf.h
 sed -i -e's/WINTTYLIB = -ltermlib/WINTTYLIB = -lncurses/' src/Makefile
+
 make all
