@@ -41,7 +41,7 @@ then
   wget "http://aarnet.dl.sourceforge.net/project/nethack/nethack/3.4.3/nethack-343-src.tgz"
 fi
 
-echo "21479c95990eefe7650df582426457f9 nethack-343-src.tgz" > md5.txt 
+echo "21479c95990eefe7650df582426457f9  nethack-343-src.tgz" > md5.txt 
 
 md5sum --check md5.txt || exit 4
 
