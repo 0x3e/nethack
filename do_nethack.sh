@@ -35,8 +35,8 @@ then
 fi
 if [ ! -f nh343-menucolor.diff ]
 then
-  wget "http://bilious.alt.org/~paxed/nethack/nh343-menucolor.diff"
-  sed -i -e's/nethack-3.4.3-orig/nethack-3.4.3/' nh343-menucolor.diff
+  curl "http://bilious.alt.org/~paxed/nethack/nh343-menucolor.diff" |\
+  sed -e's/nethack-3.4.3-orig/nethack-3.4.3/' > nh343-menucolor.diff
 fi
 if [ ! -f nethack-343-src.tgz ]
 then
