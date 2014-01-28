@@ -36,6 +36,7 @@ fi
 if [ ! -f nh343-menucolor.diff ]
 then
   wget "http://bilious.alt.org/~paxed/nethack/nh343-menucolor.diff"
+  sed -i -e's/nethack-3.4.3-orig/nethack-3.4.3/' nh343-menucolor.diff
 fi
 if [ ! -f nethack-343-src.tgz ]
 then
@@ -56,7 +57,6 @@ fi
 
 tar xzf nethack-343-src.tgz
 
-sed -i -e's/nethack-3.4.3-orig/nethack-3.4.3/' nh343-menucolor.diff
 
 patch -p0 < nh343-menucolor.diff
 patch -p0 < sortloot-343.diff
